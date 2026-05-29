@@ -8,19 +8,19 @@ export const protectRoute = [
             const clerkId = req.auth().userId;
 
             if (!clerkId) {
-                return res.status(401).json({ error: 'Unauthorized' });
+                return res.status(401).json({ message: 'Unauthorized' });
             }
 
             //find user in Db by clerkId
             const user = await User.findOne({ clerkId });
 
             if (!user) {
-                return res.status(401).json({ error: 'Unauthorized' });
+                return res.status(401).json({ message: 'Unauthorized' });
             }
             req.user = user; // attach user to request object for use in route handlers
             next();
         } catch (error) {
-            console.error('Error in protectRoute middleware:', error);
+            console.error('Error in protectRoute middleware:', error.message);
             res.status(500).json({ error: 'Server error' });
         }
     }
