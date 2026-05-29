@@ -7,7 +7,7 @@ export const inngest = new Inngest({ id: "intervo" });
 const syncUser = inngest.createFunction(
   {
     id: "sync-user",
-    trigger: { event: "clerk.user.created" },
+    trigger: { event: "user.created" },
   },
   async ({ event }) => {
     await connectDB();
@@ -34,7 +34,7 @@ const syncUser = inngest.createFunction(
 const updateUser = inngest.createFunction(
   {
     id: "update-user",
-    trigger: { event: "clerk.user.updated" },
+    trigger: { event: "user.updated" },
   },
   async ({ event }) => {
     await connectDB();
@@ -64,7 +64,7 @@ const updateUser = inngest.createFunction(
 const deleteUser = inngest.createFunction(
   {
     id: "delete-user",
-    trigger: { event: "clerk.user.deleted" },
+    trigger: { event: "user.deleted" },
   },
   async ({ event }) => {
     await connectDB();
