@@ -33,7 +33,7 @@ const syncUser = inngest.createFunction(
     await upsertStreamUser({
       id: newUser.clerkId.toString(),
       name: newUser.name,
-      profileImage: newUser.profileImage,
+      image: newUser.profileImage,
     });
   }
 );
@@ -69,7 +69,7 @@ const updateUser = inngest.createFunction(
     await upsertStreamUser({
       id: id.toString(),
       name: updatedUser.name,
-      profileImage: updatedUser.profileImage,
+      image: updatedUser.profileImage,
     });
   }
 );
