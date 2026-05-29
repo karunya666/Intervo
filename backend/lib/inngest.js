@@ -5,27 +5,37 @@ import User from "../models/User.js";
 export const inngest = new Inngest({ id: "intervo" });
 
 const syncUser = inngest.createFunction(
-    {id: "sync-user"},
-    {event: "clerk.user.created"},
-    async ({ event }) => {
-        await connectDB();
+  {
+    id: "sync-user",
+    trigger: { event: "clerk.user.created" },
+  },
+  async ({ event }) => {
+    await connectDB();
 
-        const {id, email_addresses, first_name, last_name, profile_image_url} = event.data;
+    const {
+      id,
+      email_addresses,
+      first_name,
+      last_name,
+      profile_image_url,
+    } = event.data;
 
-        const newUser = {
-            clerkId: id,
-            email: email_addresses[0]?.email_address,
-            name: `${first_name || ""} ${last_name || ""}`,
-            profileImage: profile_image_url
-        }
+    const newUser = {
+      clerkId: id,
+      email: email_addresses[0]?.email_address,
+      name: `${first_name || ""} ${last_name || ""}`,
+      profileImage: profile_image_url,
+    };
 
-        await User.create(newUser);
-    }
+    await User.create(newUser);
+  }
 );
 
 const updateUser = inngest.createFunction(
-  { id: "update-user" },
-  { event: "clerk.user.updated" },
+  {
+    id: "update-user",
+    trigger: { event: "clerk.user.updated" },
+  },
   async ({ event }) => {
     await connectDB();
 
@@ -52,14 +62,16 @@ const updateUser = inngest.createFunction(
 );
 
 const deleteUser = inngest.createFunction(
-    {id: "delete-user"},
-    {event: "clerk.user.deleted"},
-    async ({ event }) => {
-        await connectDB();
+  {
+    id: "delete-user",
+    trigger: { event: "clerk.user.deleted" },
+  },
+  async ({ event }) => {
+    await connectDB();
 
-        const {id} = event.data;
-        await User.deleteOne({clerkId: id});
-    }
+    const { id } = event.data;
+    await User.deleteOne({ clerkId: id });
+  }
 );
 
 export const functions = [syncUser, updateUser, deleteUser];
