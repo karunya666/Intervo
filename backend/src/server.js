@@ -19,7 +19,22 @@ const app = express();
 //middleware
 app.use(express.json());
 //credentials: true allows cookies to be sent in cross-origin requests
-app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
+// app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
+const allowedOrigins = [
+  ENV.CLIENT_URL,
+  "http://localhost:5173",
+];
+
+app.use(cors({ 
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true 
+}));
 app.use(clerkMiddleware()); // this adds auth field to request object: req.auth()
 
 app.use('/api/inngest', serve({ client: inngest, functions }));
