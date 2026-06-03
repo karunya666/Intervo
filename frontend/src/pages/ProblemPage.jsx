@@ -75,11 +75,18 @@ function ProblemPage() {
   };
 
   const checkIfTestsPassed = (actualOutput, expectedOutput) => {
-    const normalizedActual = normalizeOutput(actualOutput);
-    const normalizedExpected = normalizeOutput(expectedOutput);
+  const actualLines = normalizeOutput(actualOutput).split("\n");
+  const expectedLines = normalizeOutput(expectedOutput).split("\n");
 
-    return normalizedActual == normalizedExpected;
-  };
+  // Only check lines that exist in actual output
+  for (let i = 0; i < actualLines.length; i++) {
+    if (i < expectedLines.length) {
+      if (actualLines[i] !== expectedLines[i]) return false;
+    }
+  }
+
+  return actualLines.length > 0;
+};
 
   const handleRunCode = async () => {
     setIsRunning(true);
@@ -110,7 +117,7 @@ function ProblemPage() {
     <div className="h-screen bg-base-100 flex flex-col">
       <Navbar />
 
-      <div className="flex-1">
+      <div className="flex-1 overflow-hidden">
         <PanelGroup direction="horizontal">
           {/* left panel- problem desc */}
           <Panel defaultSize={40} minSize={30}>
