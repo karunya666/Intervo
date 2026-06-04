@@ -10,6 +10,7 @@ import { clerkMiddleware } from '@clerk/express';
 import chatRoutes from '../routes/chatRoutes.js';
 import sessionRoutes from '../routes/sessionRoute.js';
 import executeRoutes from '../routes/execute.js';
+import resumeRouter from '../routes/resume.js';
 
 dotenv.config();
 
@@ -42,6 +43,7 @@ app.use('/api/inngest', serve({ client: inngest, functions }));
 app.use('/api', executeRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/sessions', sessionRoutes);
+app.use("/api/resume", resumeRouter);
 
 app.get('/health', (req, res) => {
   res.status(200).json({ msg: 'API is up and running' });
