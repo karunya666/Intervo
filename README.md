@@ -1,4 +1,4 @@
-# Intervo: AI-Powered Technical Interview & Career Preparation Platform
+# Intervo: Technical Interview & Career Preparation Platform
 
 ![Intervo Home Page](https://github.com/user-attachments/assets/5b505ee7-26a0-452e-bad4-888f99b5d212)
 
