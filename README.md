@@ -234,14 +234,7 @@ MongoDB Atlas
 
 * AI Mock Interviewer with voice-based interactions.
 * AI-generated interview feedback and scoring.
-* ATS Resume Score Analyzer.
-* Personalized learning roadmap generation.
-* LeetCode integration.
 * Multi-language code execution support.
-* Session recording and playback.
-* Mentor-Mentee matching system.
-* Competitive leaderboards and gamification.
-* Migration to TypeScript.
 
 ---
 
