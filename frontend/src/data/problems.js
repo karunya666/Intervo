@@ -1459,6 +1459,1754 @@ class Solution {
       java: "[0, 1, 1]\n[0, 1, 1, 2, 1, 2]",
     },
   },
+  "binary-search": {
+    id: "binary-search",
+    title: "Binary Search",
+    difficulty: "Easy",
+    category: "Array • Binary Search",
+    description: {
+      text: "Given an array of integers nums which is sorted in ascending order, and an integer target, write a function to search target in nums. If target exists, then return its index. Otherwise, return -1.",
+      notes: ["You must write an algorithm with O(log n) runtime complexity."],
+    },
+    examples: [
+      {
+        input: "nums = [-1,0,3,5,9,12], target = 9",
+        output: "4",
+        explanation: "9 exists in nums and its index is 4.",
+      },
+      {
+        input: "nums = [-1,0,3,5,9,12], target = 2",
+        output: "-1",
+        explanation: "2 does not exist in nums so return -1.",
+      },
+    ],
+    constraints: ["1 ≤ nums.length ≤ 10⁴", "-10⁴ < nums[i], target < 10⁴", "All the integers in nums are unique", "nums is sorted in ascending order"],
+    starterCode: {
+      javascript: `function search(nums, target) {
+  // Write your solution here
+  
+}
+
+// Test cases
+console.log(search([-1,0,3,5,9,12], 9)); // Expected: 4
+console.log(search([-1,0,3,5,9,12], 2)); // Expected: -1
+console.log(search([5], 5)); // Expected: 0`,
+      python: `def search(nums, target):
+    # Write your solution here
+    pass
+
+# Test cases
+print(search([-1,0,3,5,9,12], 9))  # Expected: 4
+print(search([-1,0,3,5,9,12], 2))  # Expected: -1
+print(search([5], 5))  # Expected: 0`,
+      java: `class Solution {
+    public static int search(int[] nums, int target) {
+        // Write your solution here
+        
+        return -1;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(search(new int[]{-1,0,3,5,9,12}, 9)); // Expected: 4
+        System.out.println(search(new int[]{-1,0,3,5,9,12}, 2)); // Expected: -1
+        System.out.println(search(new int[]{5}, 5)); // Expected: 0
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "4\n-1\n0",
+      python: "4\n-1\n0",
+      java: "4\n-1\n0",
+    },
+  },
+
+  "linked-list-cycle": {
+    id: "linked-list-cycle",
+    title: "Linked List Cycle",
+    difficulty: "Easy",
+    category: "Linked List • Two Pointers",
+    description: {
+      text: "Given head, the head of a linked list, determine if the linked list has a cycle in it. There is a cycle if there is some node in the list that can be reached again by continuously following the next pointer.",
+      notes: ["Return true if there is a cycle in the linked list. Otherwise, return false."],
+    },
+    examples: [
+      {
+        input: "head = [3,2,0,-4], pos = 1",
+        output: "true",
+        explanation: "There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).",
+      },
+      {
+        input: "head = [1,2], pos = 0",
+        output: "true",
+        explanation: "There is a cycle in the linked list, where the tail connects to the 0th node.",
+      },
+      {
+        input: "head = [1], pos = -1",
+        output: "false",
+        explanation: "There is no cycle in the linked list.",
+      },
+    ],
+    constraints: ["The number of the nodes in the list is in the range [0, 10⁴]", "-10⁵ ≤ Node.val ≤ 10⁵"],
+    starterCode: {
+      javascript: `class ListNode {
+  constructor(val, next = null) { this.val = val; this.next = next; }
+}
+
+function hasCycle(head) {
+  // Write your solution here
+  
+}
+
+// Test cases - build list with cycle
+function buildCycleList(arr, pos) {
+  if (!arr.length) return null;
+  let nodes = arr.map(v => new ListNode(v));
+  for (let i = 0; i < nodes.length - 1; i++) nodes[i].next = nodes[i+1];
+  if (pos >= 0) nodes[nodes.length - 1].next = nodes[pos];
+  return nodes[0];
+}
+
+console.log(hasCycle(buildCycleList([3,2,0,-4], 1))); // Expected: true
+console.log(hasCycle(buildCycleList([1,2], 0))); // Expected: true
+console.log(hasCycle(buildCycleList([1], -1))); // Expected: false`,
+      python: `class ListNode:
+    def __init__(self, val=0, next=None): self.val = val; self.next = next
+
+def hasCycle(head):
+    # Write your solution here
+    pass
+
+def build_cycle_list(arr, pos):
+    if not arr: return None
+    nodes = [ListNode(v) for v in arr]
+    for i in range(len(nodes)-1): nodes[i].next = nodes[i+1]
+    if pos >= 0: nodes[-1].next = nodes[pos]
+    return nodes[0]
+
+# Test cases
+print(hasCycle(build_cycle_list([3,2,0,-4], 1)))  # Expected: True
+print(hasCycle(build_cycle_list([1,2], 0)))  # Expected: True
+print(hasCycle(build_cycle_list([1], -1)))  # Expected: False`,
+      java: `class ListNode {
+    int val; ListNode next;
+    ListNode(int val) { this.val = val; }
+}
+
+class Solution {
+    public static boolean hasCycle(ListNode head) {
+        // Write your solution here
+        
+        return false;
+    }
+    
+    static ListNode buildCycleList(int[] arr, int pos) {
+        if (arr.length == 0) return null;
+        ListNode[] nodes = new ListNode[arr.length];
+        for (int i = 0; i < arr.length; i++) nodes[i] = new ListNode(arr[i]);
+        for (int i = 0; i < arr.length - 1; i++) nodes[i].next = nodes[i+1];
+        if (pos >= 0) nodes[arr.length-1].next = nodes[pos];
+        return nodes[0];
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(hasCycle(buildCycleList(new int[]{3,2,0,-4}, 1))); // Expected: true
+        System.out.println(hasCycle(buildCycleList(new int[]{1,2}, 0))); // Expected: true
+        System.out.println(hasCycle(buildCycleList(new int[]{1}, -1))); // Expected: false
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "true\ntrue\nfalse",
+      python: "True\nTrue\nFalse",
+      java: "true\ntrue\nfalse",
+    },
+  },
+
+  "maximum-depth-of-binary-tree": {
+    id: "maximum-depth-of-binary-tree",
+    title: "Maximum Depth of Binary Tree",
+    difficulty: "Easy",
+    category: "Tree • DFS • BFS",
+    description: {
+      text: "Given the root of a binary tree, return its maximum depth. A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.",
+      notes: [],
+    },
+    examples: [
+      {
+        input: "root = [3,9,20,null,null,15,7]",
+        output: "3",
+      },
+      {
+        input: "root = [1,null,2]",
+        output: "2",
+      },
+    ],
+    constraints: ["The number of nodes in the tree is in the range [0, 10⁴]", "-100 ≤ Node.val ≤ 100"],
+    starterCode: {
+      javascript: `class TreeNode {
+  constructor(val, left = null, right = null) { this.val = val; this.left = left; this.right = right; }
+}
+
+function maxDepth(root) {
+  // Write your solution here
+  
+}
+
+function buildTree(arr) {
+  if (!arr.length || arr[0] === null) return null;
+  const root = new TreeNode(arr[0]);
+  const queue = [root];
+  let i = 1;
+  while (queue.length && i < arr.length) {
+    const node = queue.shift();
+    if (i < arr.length && arr[i] !== null) { node.left = new TreeNode(arr[i]); queue.push(node.left); }
+    i++;
+    if (i < arr.length && arr[i] !== null) { node.right = new TreeNode(arr[i]); queue.push(node.right); }
+    i++;
+  }
+  return root;
+}
+
+// Test cases
+console.log(maxDepth(buildTree([3,9,20,null,null,15,7]))); // Expected: 3
+console.log(maxDepth(buildTree([1,null,2]))); // Expected: 2
+console.log(maxDepth(null)); // Expected: 0`,
+      python: `class TreeNode:
+    def __init__(self, val=0, left=None, right=None): self.val=val; self.left=left; self.right=right
+
+def maxDepth(root):
+    # Write your solution here
+    pass
+
+from collections import deque
+def build_tree(arr):
+    if not arr or arr[0] is None: return None
+    root = TreeNode(arr[0]); q = deque([root]); i = 1
+    while q and i < len(arr):
+        node = q.popleft()
+        if i < len(arr) and arr[i] is not None: node.left = TreeNode(arr[i]); q.append(node.left)
+        i += 1
+        if i < len(arr) and arr[i] is not None: node.right = TreeNode(arr[i]); q.append(node.right)
+        i += 1
+    return root
+
+# Test cases
+print(maxDepth(build_tree([3,9,20,None,None,15,7])))  # Expected: 3
+print(maxDepth(build_tree([1,None,2])))  # Expected: 2
+print(maxDepth(None))  # Expected: 0`,
+      java: `class TreeNode {
+    int val; TreeNode left, right;
+    TreeNode(int val) { this.val = val; }
+}
+
+class Solution {
+    public static int maxDepth(TreeNode root) {
+        // Write your solution here
+        
+        return 0;
+    }
+    
+    static TreeNode buildTree(Integer[] arr) {
+        if (arr.length == 0 || arr[0] == null) return null;
+        TreeNode root = new TreeNode(arr[0]);
+        java.util.Queue<TreeNode> q = new java.util.LinkedList<>();
+        q.add(root); int i = 1;
+        while (!q.isEmpty() && i < arr.length) {
+            TreeNode node = q.poll();
+            if (i < arr.length && arr[i] != null) { node.left = new TreeNode(arr[i]); q.add(node.left); } i++;
+            if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); q.add(node.right); } i++;
+        }
+        return root;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(maxDepth(buildTree(new Integer[]{3,9,20,null,null,15,7}))); // Expected: 3
+        System.out.println(maxDepth(buildTree(new Integer[]{1,null,2}))); // Expected: 2
+        System.out.println(maxDepth(null)); // Expected: 0
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "3\n2\n0",
+      python: "3\n2\n0",
+      java: "3\n2\n0",
+    },
+  },
+
+  "invert-binary-tree": {
+    id: "invert-binary-tree",
+    title: "Invert Binary Tree",
+    difficulty: "Easy",
+    category: "Tree • DFS • BFS",
+    description: {
+      text: "Given the root of a binary tree, invert the tree, and return its root.",
+      notes: [],
+    },
+    examples: [
+      {
+        input: "root = [4,2,7,1,3,6,9]",
+        output: "[4,7,2,9,6,3,1]",
+      },
+      {
+        input: "root = [2,1,3]",
+        output: "[2,3,1]",
+      },
+      {
+        input: "root = []",
+        output: "[]",
+      },
+    ],
+    constraints: ["The number of nodes in the tree is in the range [0, 100]", "-100 ≤ Node.val ≤ 100"],
+    starterCode: {
+      javascript: `class TreeNode {
+  constructor(val, left = null, right = null) { this.val = val; this.left = left; this.right = right; }
+}
+
+function invertTree(root) {
+  // Write your solution here
+  
+}
+
+function buildTree(arr) {
+  if (!arr.length || arr[0] === null) return null;
+  const root = new TreeNode(arr[0]), queue = [root]; let i = 1;
+  while (queue.length && i < arr.length) {
+    const node = queue.shift();
+    if (arr[i] != null) { node.left = new TreeNode(arr[i]); queue.push(node.left); } i++;
+    if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); queue.push(node.right); } i++;
+  }
+  return root;
+}
+
+function treeToArray(root) {
+  if (!root) return [];
+  const res = [], queue = [root];
+  while (queue.length) {
+    const node = queue.shift();
+    if (node) { res.push(node.val); queue.push(node.left, node.right); } else res.push(null);
+  }
+  while (res[res.length-1] === null) res.pop();
+  return res;
+}
+
+// Test cases
+console.log(JSON.stringify(treeToArray(invertTree(buildTree([4,2,7,1,3,6,9]))))); // Expected: [4,7,2,9,6,3,1]
+console.log(JSON.stringify(treeToArray(invertTree(buildTree([2,1,3]))))); // Expected: [2,3,1]
+console.log(JSON.stringify(treeToArray(invertTree(null)))); // Expected: []`,
+      python: `class TreeNode:
+    def __init__(self, val=0, left=None, right=None): self.val=val; self.left=left; self.right=right
+
+def invertTree(root):
+    # Write your solution here
+    pass
+
+from collections import deque
+def build_tree(arr):
+    if not arr or arr[0] is None: return None
+    root = TreeNode(arr[0]); q = deque([root]); i = 1
+    while q and i < len(arr):
+        node = q.popleft()
+        if i < len(arr) and arr[i] is not None: node.left = TreeNode(arr[i]); q.append(node.left)
+        i += 1
+        if i < len(arr) and arr[i] is not None: node.right = TreeNode(arr[i]); q.append(node.right)
+        i += 1
+    return root
+
+def tree_to_array(root):
+    if not root: return []
+    res, q = [], deque([root])
+    while q:
+        node = q.popleft()
+        if node: res.append(node.val); q.append(node.left); q.append(node.right)
+        else: res.append(None)
+    while res and res[-1] is None: res.pop()
+    return res
+
+# Test cases
+print(tree_to_array(invertTree(build_tree([4,2,7,1,3,6,9]))))  # Expected: [4,7,2,9,6,3,1]
+print(tree_to_array(invertTree(build_tree([2,1,3]))))  # Expected: [2,3,1]
+print(tree_to_array(invertTree(None)))  # Expected: []`,
+      java: `class TreeNode {
+    int val; TreeNode left, right;
+    TreeNode(int val) { this.val = val; }
+}
+
+class Solution {
+    public static TreeNode invertTree(TreeNode root) {
+        // Write your solution here
+        
+        return null;
+    }
+    
+    static TreeNode buildTree(Integer[] arr) {
+        if (arr.length == 0 || arr[0] == null) return null;
+        TreeNode root = new TreeNode(arr[0]);
+        java.util.Queue<TreeNode> q = new java.util.LinkedList<>();
+        q.add(root); int i = 1;
+        while (!q.isEmpty() && i < arr.length) {
+            TreeNode node = q.poll();
+            if (i < arr.length && arr[i] != null) { node.left = new TreeNode(arr[i]); q.add(node.left); } i++;
+            if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); q.add(node.right); } i++;
+        }
+        return root;
+    }
+    
+    static java.util.List<Integer> treeToArray(TreeNode root) {
+        java.util.List<Integer> res = new java.util.ArrayList<>();
+        if (root == null) return res;
+        java.util.Queue<TreeNode> q = new java.util.LinkedList<>(); q.add(root);
+        while (!q.isEmpty()) {
+            TreeNode node = q.poll();
+            if (node != null) { res.add(node.val); q.add(node.left); q.add(node.right); } else res.add(null);
+        }
+        while (!res.isEmpty() && res.get(res.size()-1) == null) res.remove(res.size()-1);
+        return res;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(treeToArray(invertTree(buildTree(new Integer[]{4,2,7,1,3,6,9})))); // [4,7,2,9,6,3,1]
+        System.out.println(treeToArray(invertTree(buildTree(new Integer[]{2,1,3})))); // [2,3,1]
+        System.out.println(treeToArray(invertTree(null))); // []
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "[4,7,2,9,6,3,1]\n[2,3,1]\n[]",
+      python: "[4, 7, 2, 9, 6, 3, 1]\n[2, 3, 1]\n[]",
+      java: "[4, 7, 2, 9, 6, 3, 1]\n[2, 3, 1]\n[]",
+    },
+  },
+
+  "balanced-binary-tree": {
+    id: "balanced-binary-tree",
+    title: "Balanced Binary Tree",
+    difficulty: "Easy",
+    category: "Tree • DFS",
+    description: {
+      text: "Given a binary tree, determine if it is height-balanced. A height-balanced binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.",
+      notes: [],
+    },
+    examples: [
+      {
+        input: "root = [3,9,20,null,null,15,7]",
+        output: "true",
+      },
+      {
+        input: "root = [1,2,2,3,3,null,null,4,4]",
+        output: "false",
+      },
+      {
+        input: "root = []",
+        output: "true",
+      },
+    ],
+    constraints: ["The number of nodes in the tree is in the range [0, 5000]", "-10⁴ ≤ Node.val ≤ 10⁴"],
+    starterCode: {
+      javascript: `class TreeNode {
+  constructor(val, left = null, right = null) { this.val = val; this.left = left; this.right = right; }
+}
+
+function isBalanced(root) {
+  // Write your solution here
+  
+}
+
+function buildTree(arr) {
+  if (!arr.length || arr[0] === null) return null;
+  const root = new TreeNode(arr[0]), queue = [root]; let i = 1;
+  while (queue.length && i < arr.length) {
+    const node = queue.shift();
+    if (arr[i] != null) { node.left = new TreeNode(arr[i]); queue.push(node.left); } i++;
+    if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); queue.push(node.right); } i++;
+  }
+  return root;
+}
+
+// Test cases
+console.log(isBalanced(buildTree([3,9,20,null,null,15,7]))); // Expected: true
+console.log(isBalanced(buildTree([1,2,2,3,3,null,null,4,4]))); // Expected: false
+console.log(isBalanced(null)); // Expected: true`,
+      python: `class TreeNode:
+    def __init__(self, val=0, left=None, right=None): self.val=val; self.left=left; self.right=right
+
+def isBalanced(root):
+    # Write your solution here
+    pass
+
+from collections import deque
+def build_tree(arr):
+    if not arr or arr[0] is None: return None
+    root = TreeNode(arr[0]); q = deque([root]); i = 1
+    while q and i < len(arr):
+        node = q.popleft()
+        if i < len(arr) and arr[i] is not None: node.left = TreeNode(arr[i]); q.append(node.left)
+        i += 1
+        if i < len(arr) and arr[i] is not None: node.right = TreeNode(arr[i]); q.append(node.right)
+        i += 1
+    return root
+
+# Test cases
+print(isBalanced(build_tree([3,9,20,None,None,15,7])))  # Expected: True
+print(isBalanced(build_tree([1,2,2,3,3,None,None,4,4])))  # Expected: False
+print(isBalanced(None))  # Expected: True`,
+      java: `class TreeNode {
+    int val; TreeNode left, right;
+    TreeNode(int val) { this.val = val; }
+}
+
+class Solution {
+    public static boolean isBalanced(TreeNode root) {
+        // Write your solution here
+        
+        return false;
+    }
+    
+    static TreeNode buildTree(Integer[] arr) {
+        if (arr.length == 0 || arr[0] == null) return null;
+        TreeNode root = new TreeNode(arr[0]);
+        java.util.Queue<TreeNode> q = new java.util.LinkedList<>();
+        q.add(root); int i = 1;
+        while (!q.isEmpty() && i < arr.length) {
+            TreeNode node = q.poll();
+            if (i < arr.length && arr[i] != null) { node.left = new TreeNode(arr[i]); q.add(node.left); } i++;
+            if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); q.add(node.right); } i++;
+        }
+        return root;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(isBalanced(buildTree(new Integer[]{3,9,20,null,null,15,7}))); // Expected: true
+        System.out.println(isBalanced(buildTree(new Integer[]{1,2,2,3,3,null,null,4,4}))); // Expected: false
+        System.out.println(isBalanced(null)); // Expected: true
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "true\nfalse\ntrue",
+      python: "True\nFalse\nTrue",
+      java: "true\nfalse\ntrue",
+    },
+  },
+
+  "diameter-of-binary-tree": {
+    id: "diameter-of-binary-tree",
+    title: "Diameter of Binary Tree",
+    difficulty: "Easy",
+    category: "Tree • DFS",
+    description: {
+      text: "Given the root of a binary tree, return the length of the diameter of the tree. The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.",
+      notes: ["The length of a path between two nodes is represented by the number of edges between them."],
+    },
+    examples: [
+      {
+        input: "root = [1,2,3,4,5]",
+        output: "3",
+        explanation: "3 is the length of the path [4,2,1,3] or [5,2,1,3].",
+      },
+      {
+        input: "root = [1,2]",
+        output: "1",
+      },
+    ],
+    constraints: ["The number of nodes in the tree is in the range [1, 10⁴]", "-100 ≤ Node.val ≤ 100"],
+    starterCode: {
+      javascript: `class TreeNode {
+  constructor(val, left = null, right = null) { this.val = val; this.left = left; this.right = right; }
+}
+
+function diameterOfBinaryTree(root) {
+  // Write your solution here
+  
+}
+
+function buildTree(arr) {
+  if (!arr.length || arr[0] === null) return null;
+  const root = new TreeNode(arr[0]), queue = [root]; let i = 1;
+  while (queue.length && i < arr.length) {
+    const node = queue.shift();
+    if (arr[i] != null) { node.left = new TreeNode(arr[i]); queue.push(node.left); } i++;
+    if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); queue.push(node.right); } i++;
+  }
+  return root;
+}
+
+// Test cases
+console.log(diameterOfBinaryTree(buildTree([1,2,3,4,5]))); // Expected: 3
+console.log(diameterOfBinaryTree(buildTree([1,2]))); // Expected: 1`,
+      python: `class TreeNode:
+    def __init__(self, val=0, left=None, right=None): self.val=val; self.left=left; self.right=right
+
+def diameterOfBinaryTree(root):
+    # Write your solution here
+    pass
+
+from collections import deque
+def build_tree(arr):
+    if not arr or arr[0] is None: return None
+    root = TreeNode(arr[0]); q = deque([root]); i = 1
+    while q and i < len(arr):
+        node = q.popleft()
+        if i < len(arr) and arr[i] is not None: node.left = TreeNode(arr[i]); q.append(node.left)
+        i += 1
+        if i < len(arr) and arr[i] is not None: node.right = TreeNode(arr[i]); q.append(node.right)
+        i += 1
+    return root
+
+# Test cases
+print(diameterOfBinaryTree(build_tree([1,2,3,4,5])))  # Expected: 3
+print(diameterOfBinaryTree(build_tree([1,2])))  # Expected: 1`,
+      java: `class TreeNode {
+    int val; TreeNode left, right;
+    TreeNode(int val) { this.val = val; }
+}
+
+class Solution {
+    public static int diameterOfBinaryTree(TreeNode root) {
+        // Write your solution here
+        
+        return 0;
+    }
+    
+    static TreeNode buildTree(Integer[] arr) {
+        if (arr.length == 0 || arr[0] == null) return null;
+        TreeNode root = new TreeNode(arr[0]);
+        java.util.Queue<TreeNode> q = new java.util.LinkedList<>();
+        q.add(root); int i = 1;
+        while (!q.isEmpty() && i < arr.length) {
+            TreeNode node = q.poll();
+            if (i < arr.length && arr[i] != null) { node.left = new TreeNode(arr[i]); q.add(node.left); } i++;
+            if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); q.add(node.right); } i++;
+        }
+        return root;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(diameterOfBinaryTree(buildTree(new Integer[]{1,2,3,4,5}))); // Expected: 3
+        System.out.println(diameterOfBinaryTree(buildTree(new Integer[]{1,2}))); // Expected: 1
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "3\n1",
+      python: "3\n1",
+      java: "3\n1",
+    },
+  },
+
+  "same-tree": {
+    id: "same-tree",
+    title: "Same Tree",
+    difficulty: "Easy",
+    category: "Tree • DFS • BFS",
+    description: {
+      text: "Given the roots of two binary trees p and q, write a function to check if they are the same or not. Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.",
+      notes: [],
+    },
+    examples: [
+      {
+        input: "p = [1,2,3], q = [1,2,3]",
+        output: "true",
+      },
+      {
+        input: "p = [1,2], q = [1,null,2]",
+        output: "false",
+      },
+      {
+        input: "p = [1,2,1], q = [1,1,2]",
+        output: "false",
+      },
+    ],
+    constraints: ["The number of nodes in both trees is in the range [0, 100]", "-10⁴ ≤ Node.val ≤ 10⁴"],
+    starterCode: {
+      javascript: `class TreeNode {
+  constructor(val, left = null, right = null) { this.val = val; this.left = left; this.right = right; }
+}
+
+function isSameTree(p, q) {
+  // Write your solution here
+  
+}
+
+function buildTree(arr) {
+  if (!arr.length || arr[0] === null) return null;
+  const root = new TreeNode(arr[0]), queue = [root]; let i = 1;
+  while (queue.length && i < arr.length) {
+    const node = queue.shift();
+    if (arr[i] != null) { node.left = new TreeNode(arr[i]); queue.push(node.left); } i++;
+    if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); queue.push(node.right); } i++;
+  }
+  return root;
+}
+
+// Test cases
+console.log(isSameTree(buildTree([1,2,3]), buildTree([1,2,3]))); // Expected: true
+console.log(isSameTree(buildTree([1,2]), buildTree([1,null,2]))); // Expected: false
+console.log(isSameTree(buildTree([1,2,1]), buildTree([1,1,2]))); // Expected: false`,
+      python: `class TreeNode:
+    def __init__(self, val=0, left=None, right=None): self.val=val; self.left=left; self.right=right
+
+def isSameTree(p, q):
+    # Write your solution here
+    pass
+
+from collections import deque
+def build_tree(arr):
+    if not arr or arr[0] is None: return None
+    root = TreeNode(arr[0]); q = deque([root]); i = 1
+    while q and i < len(arr):
+        node = q.popleft()
+        if i < len(arr) and arr[i] is not None: node.left = TreeNode(arr[i]); q.append(node.left)
+        i += 1
+        if i < len(arr) and arr[i] is not None: node.right = TreeNode(arr[i]); q.append(node.right)
+        i += 1
+    return root
+
+# Test cases
+print(isSameTree(build_tree([1,2,3]), build_tree([1,2,3])))  # Expected: True
+print(isSameTree(build_tree([1,2]), build_tree([1,None,2])))  # Expected: False
+print(isSameTree(build_tree([1,2,1]), build_tree([1,1,2])))  # Expected: False`,
+      java: `class TreeNode {
+    int val; TreeNode left, right;
+    TreeNode(int val) { this.val = val; }
+}
+
+class Solution {
+    public static boolean isSameTree(TreeNode p, TreeNode q) {
+        // Write your solution here
+        
+        return false;
+    }
+    
+    static TreeNode buildTree(Integer[] arr) {
+        if (arr.length == 0 || arr[0] == null) return null;
+        TreeNode root = new TreeNode(arr[0]);
+        java.util.Queue<TreeNode> queue = new java.util.LinkedList<>();
+        queue.add(root); int i = 1;
+        while (!queue.isEmpty() && i < arr.length) {
+            TreeNode node = queue.poll();
+            if (i < arr.length && arr[i] != null) { node.left = new TreeNode(arr[i]); queue.add(node.left); } i++;
+            if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); queue.add(node.right); } i++;
+        }
+        return root;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(isSameTree(buildTree(new Integer[]{1,2,3}), buildTree(new Integer[]{1,2,3}))); // true
+        System.out.println(isSameTree(buildTree(new Integer[]{1,2}), buildTree(new Integer[]{1,null,2}))); // false
+        System.out.println(isSameTree(buildTree(new Integer[]{1,2,1}), buildTree(new Integer[]{1,1,2}))); // false
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "true\nfalse\nfalse",
+      python: "True\nFalse\nFalse",
+      java: "true\nfalse\nfalse",
+    },
+  },
+
+  "subtree-of-another-tree": {
+    id: "subtree-of-another-tree",
+    title: "Subtree of Another Tree",
+    difficulty: "Easy",
+    category: "Tree • DFS • String Matching",
+    description: {
+      text: "Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the same structure and node values as subRoot and false otherwise.",
+      notes: ["A subtree of a binary tree tree is a tree that consists of a node in tree and all of this node's descendants."],
+    },
+    examples: [
+      {
+        input: "root = [3,4,5,1,2], subRoot = [4,1,2]",
+        output: "true",
+      },
+      {
+        input: "root = [3,4,5,1,2,null,null,null,null,0], subRoot = [4,1,2]",
+        output: "false",
+      },
+    ],
+    constraints: ["The number of nodes in root is in the range [1, 2000]", "The number of nodes in subRoot is in the range [1, 1000]", "-10⁴ ≤ root.val, subRoot.val ≤ 10⁴"],
+    starterCode: {
+      javascript: `class TreeNode {
+  constructor(val, left = null, right = null) { this.val = val; this.left = left; this.right = right; }
+}
+
+function isSubtree(root, subRoot) {
+  // Write your solution here
+  
+}
+
+function buildTree(arr) {
+  if (!arr.length || arr[0] === null) return null;
+  const root = new TreeNode(arr[0]), queue = [root]; let i = 1;
+  while (queue.length && i < arr.length) {
+    const node = queue.shift();
+    if (arr[i] != null) { node.left = new TreeNode(arr[i]); queue.push(node.left); } i++;
+    if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); queue.push(node.right); } i++;
+  }
+  return root;
+}
+
+// Test cases
+console.log(isSubtree(buildTree([3,4,5,1,2]), buildTree([4,1,2]))); // Expected: true
+console.log(isSubtree(buildTree([3,4,5,1,2,null,null,null,null,0]), buildTree([4,1,2]))); // Expected: false`,
+      python: `class TreeNode:
+    def __init__(self, val=0, left=None, right=None): self.val=val; self.left=left; self.right=right
+
+def isSubtree(root, subRoot):
+    # Write your solution here
+    pass
+
+from collections import deque
+def build_tree(arr):
+    if not arr or arr[0] is None: return None
+    root = TreeNode(arr[0]); q = deque([root]); i = 1
+    while q and i < len(arr):
+        node = q.popleft()
+        if i < len(arr) and arr[i] is not None: node.left = TreeNode(arr[i]); q.append(node.left)
+        i += 1
+        if i < len(arr) and arr[i] is not None: node.right = TreeNode(arr[i]); q.append(node.right)
+        i += 1
+    return root
+
+# Test cases
+print(isSubtree(build_tree([3,4,5,1,2]), build_tree([4,1,2])))  # Expected: True
+print(isSubtree(build_tree([3,4,5,1,2,None,None,None,None,0]), build_tree([4,1,2])))  # Expected: False`,
+      java: `class TreeNode {
+    int val; TreeNode left, right;
+    TreeNode(int val) { this.val = val; }
+}
+
+class Solution {
+    public static boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        // Write your solution here
+        
+        return false;
+    }
+    
+    static TreeNode buildTree(Integer[] arr) {
+        if (arr.length == 0 || arr[0] == null) return null;
+        TreeNode root = new TreeNode(arr[0]);
+        java.util.Queue<TreeNode> q = new java.util.LinkedList<>();
+        q.add(root); int i = 1;
+        while (!q.isEmpty() && i < arr.length) {
+            TreeNode node = q.poll();
+            if (i < arr.length && arr[i] != null) { node.left = new TreeNode(arr[i]); q.add(node.left); } i++;
+            if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); q.add(node.right); } i++;
+        }
+        return root;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(isSubtree(buildTree(new Integer[]{3,4,5,1,2}), buildTree(new Integer[]{4,1,2}))); // true
+        System.out.println(isSubtree(buildTree(new Integer[]{3,4,5,1,2,null,null,null,null,0}), buildTree(new Integer[]{4,1,2}))); // false
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "true\nfalse",
+      python: "True\nFalse",
+      java: "true\nfalse",
+    },
+  },
+
+  "lowest-common-ancestor-bst": {
+    id: "lowest-common-ancestor-bst",
+    title: "Lowest Common Ancestor of a BST",
+    difficulty: "Medium",
+    category: "Tree • DFS • BST",
+    description: {
+      text: "Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST. The LCA is defined as the lowest node in the tree that has both p and q as descendants (a node can be a descendant of itself).",
+      notes: [],
+    },
+    examples: [
+      {
+        input: "root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8",
+        output: "6",
+        explanation: "The LCA of nodes 2 and 8 is 6.",
+      },
+      {
+        input: "root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4",
+        output: "2",
+        explanation: "The LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself.",
+      },
+    ],
+    constraints: ["The number of nodes in the tree is in the range [2, 10⁵]", "-10⁹ ≤ Node.val ≤ 10⁹", "All Node.val are unique", "p != q"],
+    starterCode: {
+      javascript: `class TreeNode {
+  constructor(val, left = null, right = null) { this.val = val; this.left = left; this.right = right; }
+}
+
+function lowestCommonAncestor(root, p, q) {
+  // Write your solution here
+  
+}
+
+function buildTree(arr) {
+  if (!arr.length || arr[0] === null) return null;
+  const root = new TreeNode(arr[0]), queue = [root]; let i = 1;
+  while (queue.length && i < arr.length) {
+    const node = queue.shift();
+    if (arr[i] != null) { node.left = new TreeNode(arr[i]); queue.push(node.left); } i++;
+    if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); queue.push(node.right); } i++;
+  }
+  return root;
+}
+
+function findNode(root, val) {
+  if (!root) return null;
+  if (root.val === val) return root;
+  return findNode(root.left, val) || findNode(root.right, val);
+}
+
+// Test cases
+const tree1 = buildTree([6,2,8,0,4,7,9,null,null,3,5]);
+console.log(lowestCommonAncestor(tree1, findNode(tree1,2), findNode(tree1,8)).val); // Expected: 6
+console.log(lowestCommonAncestor(tree1, findNode(tree1,2), findNode(tree1,4)).val); // Expected: 2`,
+      python: `class TreeNode:
+    def __init__(self, val=0, left=None, right=None): self.val=val; self.left=left; self.right=right
+
+def lowestCommonAncestor(root, p, q):
+    # Write your solution here
+    pass
+
+from collections import deque
+def build_tree(arr):
+    if not arr or arr[0] is None: return None
+    root = TreeNode(arr[0]); que = deque([root]); i = 1
+    while que and i < len(arr):
+        node = que.popleft()
+        if i < len(arr) and arr[i] is not None: node.left = TreeNode(arr[i]); que.append(node.left)
+        i += 1
+        if i < len(arr) and arr[i] is not None: node.right = TreeNode(arr[i]); que.append(node.right)
+        i += 1
+    return root
+
+def find_node(root, val):
+    if not root: return None
+    if root.val == val: return root
+    return find_node(root.left, val) or find_node(root.right, val)
+
+# Test cases
+tree1 = build_tree([6,2,8,0,4,7,9,None,None,3,5])
+print(lowestCommonAncestor(tree1, find_node(tree1,2), find_node(tree1,8)).val)  # Expected: 6
+print(lowestCommonAncestor(tree1, find_node(tree1,2), find_node(tree1,4)).val)  # Expected: 2`,
+      java: `class TreeNode {
+    int val; TreeNode left, right;
+    TreeNode(int val) { this.val = val; }
+}
+
+class Solution {
+    public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        // Write your solution here
+        
+        return null;
+    }
+    
+    static TreeNode buildTree(Integer[] arr) {
+        if (arr.length == 0 || arr[0] == null) return null;
+        TreeNode root = new TreeNode(arr[0]);
+        java.util.Queue<TreeNode> que = new java.util.LinkedList<>();
+        que.add(root); int i = 1;
+        while (!que.isEmpty() && i < arr.length) {
+            TreeNode node = que.poll();
+            if (i < arr.length && arr[i] != null) { node.left = new TreeNode(arr[i]); que.add(node.left); } i++;
+            if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); que.add(node.right); } i++;
+        }
+        return root;
+    }
+    
+    static TreeNode findNode(TreeNode root, int val) {
+        if (root == null) return null;
+        if (root.val == val) return root;
+        TreeNode left = findNode(root.left, val);
+        return left != null ? left : findNode(root.right, val);
+    }
+    
+    public static void main(String[] args) {
+        TreeNode tree1 = buildTree(new Integer[]{6,2,8,0,4,7,9,null,null,3,5});
+        System.out.println(lowestCommonAncestor(tree1, findNode(tree1,2), findNode(tree1,8)).val); // 6
+        System.out.println(lowestCommonAncestor(tree1, findNode(tree1,2), findNode(tree1,4)).val); // 2
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "6\n2",
+      python: "6\n2",
+      java: "6\n2",
+    },
+  },
+
+  "level-order-traversal": {
+    id: "level-order-traversal",
+    title: "Binary Tree Level Order Traversal",
+    difficulty: "Medium",
+    category: "Tree • BFS",
+    description: {
+      text: "Given the root of a binary tree, return the level order traversal of its nodes' values (i.e., from left to right, level by level).",
+      notes: [],
+    },
+    examples: [
+      {
+        input: "root = [3,9,20,null,null,15,7]",
+        output: "[[3],[9,20],[15,7]]",
+      },
+      {
+        input: "root = [1]",
+        output: "[[1]]",
+      },
+      {
+        input: "root = []",
+        output: "[]",
+      },
+    ],
+    constraints: ["The number of nodes in the tree is in the range [0, 2000]", "-1000 ≤ Node.val ≤ 1000"],
+    starterCode: {
+      javascript: `class TreeNode {
+  constructor(val, left = null, right = null) { this.val = val; this.left = left; this.right = right; }
+}
+
+function levelOrder(root) {
+  // Write your solution here
+  
+}
+
+function buildTree(arr) {
+  if (!arr.length || arr[0] === null) return null;
+  const root = new TreeNode(arr[0]), queue = [root]; let i = 1;
+  while (queue.length && i < arr.length) {
+    const node = queue.shift();
+    if (arr[i] != null) { node.left = new TreeNode(arr[i]); queue.push(node.left); } i++;
+    if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); queue.push(node.right); } i++;
+  }
+  return root;
+}
+
+// Test cases
+console.log(JSON.stringify(levelOrder(buildTree([3,9,20,null,null,15,7])))); // Expected: [[3],[9,20],[15,7]]
+console.log(JSON.stringify(levelOrder(buildTree([1])))); // Expected: [[1]]
+console.log(JSON.stringify(levelOrder(null))); // Expected: []`,
+      python: `class TreeNode:
+    def __init__(self, val=0, left=None, right=None): self.val=val; self.left=left; self.right=right
+
+def levelOrder(root):
+    # Write your solution here
+    pass
+
+from collections import deque
+def build_tree(arr):
+    if not arr or arr[0] is None: return None
+    root = TreeNode(arr[0]); q = deque([root]); i = 1
+    while q and i < len(arr):
+        node = q.popleft()
+        if i < len(arr) and arr[i] is not None: node.left = TreeNode(arr[i]); q.append(node.left)
+        i += 1
+        if i < len(arr) and arr[i] is not None: node.right = TreeNode(arr[i]); q.append(node.right)
+        i += 1
+    return root
+
+# Test cases
+print(levelOrder(build_tree([3,9,20,None,None,15,7])))  # Expected: [[3], [9, 20], [15, 7]]
+print(levelOrder(build_tree([1])))  # Expected: [[1]]
+print(levelOrder(None))  # Expected: []`,
+      java: `import java.util.*;
+
+class TreeNode {
+    int val; TreeNode left, right;
+    TreeNode(int val) { this.val = val; }
+}
+
+class Solution {
+    public static List<List<Integer>> levelOrder(TreeNode root) {
+        // Write your solution here
+        
+        return new ArrayList<>();
+    }
+    
+    static TreeNode buildTree(Integer[] arr) {
+        if (arr.length == 0 || arr[0] == null) return null;
+        TreeNode root = new TreeNode(arr[0]);
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root); int i = 1;
+        while (!q.isEmpty() && i < arr.length) {
+            TreeNode node = q.poll();
+            if (i < arr.length && arr[i] != null) { node.left = new TreeNode(arr[i]); q.add(node.left); } i++;
+            if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); q.add(node.right); } i++;
+        }
+        return root;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(levelOrder(buildTree(new Integer[]{3,9,20,null,null,15,7}))); // [[3],[9,20],[15,7]]
+        System.out.println(levelOrder(buildTree(new Integer[]{1}))); // [[1]]
+        System.out.println(levelOrder(null)); // []
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "[[3],[9,20],[15,7]]\n[[1]]\n[]",
+      python: "[[3], [9, 20], [15, 7]]\n[[1]]\n[]",
+      java: "[[3], [9, 20], [15, 7]]\n[[1]]\n[]",
+    },
+  },
+
+  "validate-bst": {
+    id: "validate-bst",
+    title: "Validate Binary Search Tree",
+    difficulty: "Medium",
+    category: "Tree • DFS • BST",
+    description: {
+      text: "Given the root of a binary tree, determine if it is a valid binary search tree (BST). A valid BST is defined as: the left subtree of a node contains only nodes with keys less than the node's key, the right subtree contains only nodes with keys greater than the node's key, and both subtrees must also be BSTs.",
+      notes: [],
+    },
+    examples: [
+      {
+        input: "root = [2,1,3]",
+        output: "true",
+      },
+      {
+        input: "root = [5,1,4,null,null,3,6]",
+        output: "false",
+        explanation: "The root node's value is 5 but its right child's value is 4.",
+      },
+    ],
+    constraints: ["The number of nodes in the tree is in the range [1, 10⁴]", "-2³¹ ≤ Node.val ≤ 2³¹ - 1"],
+    starterCode: {
+      javascript: `class TreeNode {
+  constructor(val, left = null, right = null) { this.val = val; this.left = left; this.right = right; }
+}
+
+function isValidBST(root) {
+  // Write your solution here
+  
+}
+
+function buildTree(arr) {
+  if (!arr.length || arr[0] === null) return null;
+  const root = new TreeNode(arr[0]), queue = [root]; let i = 1;
+  while (queue.length && i < arr.length) {
+    const node = queue.shift();
+    if (arr[i] != null) { node.left = new TreeNode(arr[i]); queue.push(node.left); } i++;
+    if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); queue.push(node.right); } i++;
+  }
+  return root;
+}
+
+// Test cases
+console.log(isValidBST(buildTree([2,1,3]))); // Expected: true
+console.log(isValidBST(buildTree([5,1,4,null,null,3,6]))); // Expected: false
+console.log(isValidBST(buildTree([5,4,6,null,null,3,7]))); // Expected: false`,
+      python: `class TreeNode:
+    def __init__(self, val=0, left=None, right=None): self.val=val; self.left=left; self.right=right
+
+def isValidBST(root):
+    # Write your solution here
+    pass
+
+from collections import deque
+def build_tree(arr):
+    if not arr or arr[0] is None: return None
+    root = TreeNode(arr[0]); q = deque([root]); i = 1
+    while q and i < len(arr):
+        node = q.popleft()
+        if i < len(arr) and arr[i] is not None: node.left = TreeNode(arr[i]); q.append(node.left)
+        i += 1
+        if i < len(arr) and arr[i] is not None: node.right = TreeNode(arr[i]); q.append(node.right)
+        i += 1
+    return root
+
+# Test cases
+print(isValidBST(build_tree([2,1,3])))  # Expected: True
+print(isValidBST(build_tree([5,1,4,None,None,3,6])))  # Expected: False
+print(isValidBST(build_tree([5,4,6,None,None,3,7])))  # Expected: False`,
+      java: `class TreeNode {
+    int val; TreeNode left, right;
+    TreeNode(int val) { this.val = val; }
+}
+
+class Solution {
+    public static boolean isValidBST(TreeNode root) {
+        // Write your solution here
+        
+        return false;
+    }
+    
+    static TreeNode buildTree(Integer[] arr) {
+        if (arr.length == 0 || arr[0] == null) return null;
+        TreeNode root = new TreeNode(arr[0]);
+        java.util.Queue<TreeNode> q = new java.util.LinkedList<>();
+        q.add(root); int i = 1;
+        while (!q.isEmpty() && i < arr.length) {
+            TreeNode node = q.poll();
+            if (i < arr.length && arr[i] != null) { node.left = new TreeNode(arr[i]); q.add(node.left); } i++;
+            if (i < arr.length && arr[i] != null) { node.right = new TreeNode(arr[i]); q.add(node.right); } i++;
+        }
+        return root;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(isValidBST(buildTree(new Integer[]{2,1,3}))); // Expected: true
+        System.out.println(isValidBST(buildTree(new Integer[]{5,1,4,null,null,3,6}))); // Expected: false
+        System.out.println(isValidBST(buildTree(new Integer[]{5,4,6,null,null,3,7}))); // Expected: false
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "true\nfalse\nfalse",
+      python: "True\nFalse\nFalse",
+      java: "true\nfalse\nfalse",
+    },
+  },
+
+  "number-of-islands": {
+    id: "number-of-islands",
+    title: "Number of Islands",
+    difficulty: "Medium",
+    category: "Graph • DFS • BFS • Matrix",
+    description: {
+      text: "Given an m x n 2D binary grid which represents a map of '1's (land) and '0's (water), return the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.",
+      notes: ["You may assume all four edges of the grid are all surrounded by water."],
+    },
+    examples: [
+      {
+        input: 'grid = [["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]]',
+        output: "1",
+      },
+      {
+        input: 'grid = [["1","1","0","0","0"],["1","1","0","0","0"],["0","0","1","0","0"],["0","0","0","1","1"]]',
+        output: "3",
+      },
+    ],
+    constraints: ["m == grid.length", "n == grid[i].length", "1 ≤ m, n ≤ 300", "grid[i][j] is '0' or '1'"],
+    starterCode: {
+      javascript: `function numIslands(grid) {
+  // Write your solution here
+  
+}
+
+// Test cases
+console.log(numIslands([["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]])); // Expected: 1
+console.log(numIslands([["1","1","0","0","0"],["1","1","0","0","0"],["0","0","1","0","0"],["0","0","0","1","1"]])); // Expected: 3`,
+      python: `def numIslands(grid):
+    # Write your solution here
+    pass
+
+# Test cases
+print(numIslands([["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]]))  # Expected: 1
+print(numIslands([["1","1","0","0","0"],["1","1","0","0","0"],["0","0","1","0","0"],["0","0","0","1","1"]]))  # Expected: 3`,
+      java: `class Solution {
+    public static int numIslands(char[][] grid) {
+        // Write your solution here
+        
+        return 0;
+    }
+    
+    public static void main(String[] args) {
+        char[][] grid1 = {{'1','1','1','1','0'},{'1','1','0','1','0'},{'1','1','0','0','0'},{'0','0','0','0','0'}};
+        System.out.println(numIslands(grid1)); // Expected: 1
+        
+        char[][] grid2 = {{'1','1','0','0','0'},{'1','1','0','0','0'},{'0','0','1','0','0'},{'0','0','0','1','1'}};
+        System.out.println(numIslands(grid2)); // Expected: 3
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "1\n3",
+      python: "1\n3",
+      java: "1\n3",
+    },
+  },
+
+  "clone-graph": {
+    id: "clone-graph",
+    title: "Clone Graph",
+    difficulty: "Medium",
+    category: "Graph • DFS • BFS • Hash Table",
+    description: {
+      text: "Given a reference of a node in a connected undirected graph, return a deep copy (clone) of the graph. Each node in the graph contains a value (int) and a list of its neighbors.",
+      notes: ["The given node will always be the first node with val = 1."],
+    },
+    examples: [
+      {
+        input: "adjList = [[2,4],[1,3],[2,4],[1,3]]",
+        output: "[[2,4],[1,3],[2,4],[1,3]]",
+        explanation: "There are 4 nodes in the graph. Node 1's neighbors are nodes 2 and 4. Node 2's neighbors are nodes 1 and 3. Node 3's neighbors are nodes 2 and 4. Node 4's neighbors are nodes 1 and 3.",
+      },
+      {
+        input: "adjList = [[]]",
+        output: "[[]]",
+        explanation: "The graph has only one node with val = 1 and no neighbors.",
+      },
+    ],
+    constraints: ["The number of nodes in the graph is in the range [0, 100]", "1 ≤ Node.val ≤ 100", "Node.val is unique for each node", "There are no repeated edges and no self-loops"],
+    starterCode: {
+      javascript: `class Node {
+  constructor(val, neighbors = []) { this.val = val; this.neighbors = neighbors; }
+}
+
+function cloneGraph(node) {
+  // Write your solution here
+  
+}
+
+function buildGraph(adjList) {
+  if (!adjList.length) return null;
+  const nodes = adjList.map((_, i) => new Node(i + 1));
+  adjList.forEach((neighbors, i) => { nodes[i].neighbors = neighbors.map(n => nodes[n - 1]); });
+  return nodes[0];
+}
+
+function graphToAdjList(node) {
+  if (!node) return [];
+  const visited = new Map(), result = [];
+  const dfs = (n) => {
+    if (visited.has(n.val)) return;
+    visited.set(n.val, n);
+    result[n.val - 1] = n.neighbors.map(nb => nb.val);
+    n.neighbors.forEach(dfs);
+  };
+  dfs(node);
+  return result;
+}
+
+// Test cases
+console.log(JSON.stringify(graphToAdjList(cloneGraph(buildGraph([[2,4],[1,3],[2,4],[1,3]]))))); // [[2,4],[1,3],[2,4],[1,3]]
+console.log(JSON.stringify(graphToAdjList(cloneGraph(buildGraph([[]]))))); // [[]]`,
+      python: `class Node:
+    def __init__(self, val=0, neighbors=None): self.val=val; self.neighbors=neighbors or []
+
+def cloneGraph(node):
+    # Write your solution here
+    pass
+
+def build_graph(adj_list):
+    if not adj_list: return None
+    nodes = [Node(i+1) for i in range(len(adj_list))]
+    for i, neighbors in enumerate(adj_list): nodes[i].neighbors = [nodes[n-1] for n in neighbors]
+    return nodes[0]
+
+def graph_to_adj(node):
+    if not node: return []
+    visited, result = {}, {}
+    def dfs(n):
+        if n.val in visited: return
+        visited[n.val] = n; result[n.val] = [nb.val for nb in n.neighbors]
+        for nb in n.neighbors: dfs(nb)
+    dfs(node)
+    return [result[i] for i in sorted(result)]
+
+# Test cases
+print(graph_to_adj(cloneGraph(build_graph([[2,4],[1,3],[2,4],[1,3]]))))  # [[2,4],[1,3],[2,4],[1,3]]
+print(graph_to_adj(cloneGraph(build_graph([[]]))))  # [[]]`,
+      java: `import java.util.*;
+
+class Node {
+    int val; List<Node> neighbors;
+    Node(int val) { this.val = val; this.neighbors = new ArrayList<>(); }
+}
+
+class Solution {
+    public static Node cloneGraph(Node node) {
+        // Write your solution here
+        
+        return null;
+    }
+    
+    static Node buildGraph(int[][] adjList) {
+        if (adjList.length == 0) return null;
+        Node[] nodes = new Node[adjList.length];
+        for (int i = 0; i < adjList.length; i++) nodes[i] = new Node(i+1);
+        for (int i = 0; i < adjList.length; i++)
+            for (int n : adjList[i]) nodes[i].neighbors.add(nodes[n-1]);
+        return nodes[0];
+    }
+    
+    static List<List<Integer>> graphToAdj(Node node) {
+        if (node == null) return new ArrayList<>();
+        Map<Integer,Node> visited = new HashMap<>(); Map<Integer,List<Integer>> result = new TreeMap<>();
+        Deque<Node> stack = new ArrayDeque<>(); stack.push(node);
+        while (!stack.isEmpty()) {
+            Node n = stack.pop();
+            if (visited.containsKey(n.val)) continue;
+            visited.put(n.val, n); List<Integer> nbs = new ArrayList<>();
+            for (Node nb : n.neighbors) { nbs.add(nb.val); stack.push(nb); }
+            result.put(n.val, nbs);
+        }
+        return new ArrayList<>(result.values());
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(graphToAdj(cloneGraph(buildGraph(new int[][]{{2,4},{1,3},{2,4},{1,3}})))); // [[2,4],[1,3],[2,4],[1,3]]
+        System.out.println(graphToAdj(cloneGraph(buildGraph(new int[][]{{}}))));  // [[]]
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "[[2,4],[1,3],[2,4],[1,3]]\n[[]]",
+      python: "[[2, 4], [1, 3], [2, 4], [1, 3]]\n[[]]",
+      java: "[[2, 4], [1, 3], [2, 4], [1, 3]]\n[[]]",
+    },
+  },
+
+  "course-schedule": {
+    id: "course-schedule",
+    title: "Course Schedule",
+    difficulty: "Medium",
+    category: "Graph • DFS • Topological Sort",
+    description: {
+      text: "There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai. Return true if you can finish all courses. Otherwise, return false.",
+      notes: [],
+    },
+    examples: [
+      {
+        input: "numCourses = 2, prerequisites = [[1,0]]",
+        output: "true",
+        explanation: "There are 2 courses to take. To take course 1 you should have finished course 0. So it is possible.",
+      },
+      {
+        input: "numCourses = 2, prerequisites = [[1,0],[0,1]]",
+        output: "false",
+        explanation: "There are 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.",
+      },
+    ],
+    constraints: ["1 ≤ numCourses ≤ 2000", "0 ≤ prerequisites.length ≤ 5000", "prerequisites[i].length == 2", "All the pairs prerequisites[i] are unique"],
+    starterCode: {
+      javascript: `function canFinish(numCourses, prerequisites) {
+  // Write your solution here
+  
+}
+
+// Test cases
+console.log(canFinish(2, [[1,0]])); // Expected: true
+console.log(canFinish(2, [[1,0],[0,1]])); // Expected: false
+console.log(canFinish(1, [])); // Expected: true`,
+      python: `def canFinish(numCourses, prerequisites):
+    # Write your solution here
+    pass
+
+# Test cases
+print(canFinish(2, [[1,0]]))  # Expected: True
+print(canFinish(2, [[1,0],[0,1]]))  # Expected: False
+print(canFinish(1, []))  # Expected: True`,
+      java: `class Solution {
+    public static boolean canFinish(int numCourses, int[][] prerequisites) {
+        // Write your solution here
+        
+        return false;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(canFinish(2, new int[][]{{1,0}})); // Expected: true
+        System.out.println(canFinish(2, new int[][]{{1,0},{0,1}})); // Expected: false
+        System.out.println(canFinish(1, new int[][]{})); // Expected: true
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "true\nfalse\ntrue",
+      python: "True\nFalse\nTrue",
+      java: "true\nfalse\ntrue",
+    },
+  },
+
+  "word-search": {
+    id: "word-search",
+    title: "Word Search",
+    difficulty: "Medium",
+    category: "Array • Backtracking • Matrix",
+    description: {
+      text: "Given an m x n grid of characters board and a string word, return true if word exists in the grid. The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.",
+      notes: [],
+    },
+    examples: [
+      {
+        input: 'board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"',
+        output: "true",
+      },
+      {
+        input: 'board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "SEE"',
+        output: "true",
+      },
+      {
+        input: 'board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCB"',
+        output: "false",
+      },
+    ],
+    constraints: ["m == board.length", "n = board[i].length", "1 ≤ m, n ≤ 6", "1 ≤ word.length ≤ 15", "board and word consist of only lowercase and uppercase English letters"],
+    starterCode: {
+      javascript: `function exist(board, word) {
+  // Write your solution here
+  
+}
+
+// Test cases
+const board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]];
+console.log(exist(board, "ABCCED")); // Expected: true
+console.log(exist(board, "SEE")); // Expected: true
+console.log(exist(board, "ABCB")); // Expected: false`,
+      python: `def exist(board, word):
+    # Write your solution here
+    pass
+
+# Test cases
+board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
+print(exist(board, "ABCCED"))  # Expected: True
+print(exist(board, "SEE"))  # Expected: True
+print(exist(board, "ABCB"))  # Expected: False`,
+      java: `class Solution {
+    public static boolean exist(char[][] board, String word) {
+        // Write your solution here
+        
+        return false;
+    }
+    
+    public static void main(String[] args) {
+        char[][] board = {{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
+        System.out.println(exist(board, "ABCCED")); // Expected: true
+        System.out.println(exist(board, "SEE")); // Expected: true
+        System.out.println(exist(board, "ABCB")); // Expected: false
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "true\ntrue\nfalse",
+      python: "True\nTrue\nFalse",
+      java: "true\ntrue\nfalse",
+    },
+  },
+
+  "missing-number": {
+    id: "missing-number",
+    title: "Missing Number",
+    difficulty: "Easy",
+    category: "Array • Math • Bit Manipulation",
+    description: {
+      text: "Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.",
+      notes: [],
+    },
+    examples: [
+      {
+        input: "nums = [3,0,1]",
+        output: "2",
+        explanation: "n = 3 since there are 3 numbers, so all numbers are in the range [0,3]. 2 is the missing number.",
+      },
+      {
+        input: "nums = [0,1]",
+        output: "2",
+        explanation: "n = 2 since there are 2 numbers, so all numbers are in the range [0,2]. 2 is the missing number.",
+      },
+      {
+        input: "nums = [9,6,4,2,3,5,7,0,1]",
+        output: "8",
+      },
+    ],
+    constraints: ["n == nums.length", "1 ≤ n ≤ 10⁴", "0 ≤ nums[i] ≤ n", "All the numbers of nums are unique"],
+    starterCode: {
+      javascript: `function missingNumber(nums) {
+  // Write your solution here
+  
+}
+
+// Test cases
+console.log(missingNumber([3,0,1])); // Expected: 2
+console.log(missingNumber([0,1])); // Expected: 2
+console.log(missingNumber([9,6,4,2,3,5,7,0,1])); // Expected: 8`,
+      python: `def missingNumber(nums):
+    # Write your solution here
+    pass
+
+# Test cases
+print(missingNumber([3,0,1]))  # Expected: 2
+print(missingNumber([0,1]))  # Expected: 2
+print(missingNumber([9,6,4,2,3,5,7,0,1]))  # Expected: 8`,
+      java: `class Solution {
+    public static int missingNumber(int[] nums) {
+        // Write your solution here
+        
+        return -1;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(missingNumber(new int[]{3,0,1})); // Expected: 2
+        System.out.println(missingNumber(new int[]{0,1})); // Expected: 2
+        System.out.println(missingNumber(new int[]{9,6,4,2,3,5,7,0,1})); // Expected: 8
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "2\n2\n8",
+      python: "2\n2\n8",
+      java: "2\n2\n8",
+    },
+  },
+
+  "reverse-bits": {
+    id: "reverse-bits",
+    title: "Reverse Bits",
+    difficulty: "Easy",
+    category: "Bit Manipulation",
+    description: {
+      text: "Reverse bits of a given 32 bits unsigned integer.",
+      notes: ["In some languages such as Java, there is no unsigned integer type. In this case, both input and output will be given as a signed integer type. They should not affect your implementation, as the integer's internal binary representation is the same, whether it is signed or unsigned."],
+    },
+    examples: [
+      {
+        input: "n = 00000010100101000001111010011100",
+        output: "964176192",
+        explanation: "The input binary string 00000010100101000001111010011100 represents the unsigned integer 43261596, so return 964176192 which its binary representation is 00111001011110000010100101000000.",
+      },
+      {
+        input: "n = 11111111111111111111111111111101",
+        output: "3221225471",
+        explanation: "The input binary string 11111111111111111111111111111101 represents the unsigned integer 4294967293, so return 3221225471.",
+      },
+    ],
+    constraints: ["The input must be a binary string of length 32"],
+    starterCode: {
+      javascript: `function reverseBits(n) {
+  // Write your solution here
+  
+}
+
+// Test cases
+console.log(reverseBits(43261596)); // Expected: 964176192
+console.log(reverseBits(4294967293)); // Expected: 3221225471`,
+      python: `def reverseBits(n):
+    # Write your solution here
+    pass
+
+# Test cases
+print(reverseBits(43261596))  # Expected: 964176192
+print(reverseBits(4294967293))  # Expected: 3221225471`,
+      java: `class Solution {
+    public static int reverseBits(int n) {
+        // Write your solution here
+        
+        return 0;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(Integer.toUnsignedLong(reverseBits(43261596))); // Expected: 964176192
+        System.out.println(Integer.toUnsignedLong(reverseBits(-3))); // Expected: 3221225471
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "964176192\n3221225471",
+      python: "964176192\n3221225471",
+      java: "964176192\n3221225471",
+    },
+  },
+
+  "implement-trie": {
+    id: "implement-trie",
+    title: "Implement Trie (Prefix Tree)",
+    difficulty: "Medium",
+    category: "Trie • Design • Hash Table",
+    description: {
+      text: "A trie (pronounced as 'try') or prefix tree is a tree data structure used to efficiently store and retrieve keys in a dataset of strings. Implement the Trie class with insert, search, and startsWith methods.",
+      notes: [
+        "insert(word) — Inserts the string word into the trie.",
+        "search(word) — Returns true if the string word is in the trie (inserted previously), and false otherwise.",
+        "startsWith(prefix) — Returns true if there is a previously inserted string that has the prefix, and false otherwise.",
+      ],
+    },
+    examples: [
+      {
+        input: '["Trie","insert","search","search","startsWith","insert","search"]\n[[],["apple"],["apple"],["app"],["app"],["app"],["app"]]',
+        output: "[null,null,true,false,true,null,true]",
+      },
+    ],
+    constraints: ["1 ≤ word.length, prefix.length ≤ 2000", "word and prefix consist only of lowercase English letters", "At most 3 * 10⁴ calls in total will be made to insert, search, and startsWith"],
+    starterCode: {
+      javascript: `class Trie {
+  constructor() {
+    // Write your solution here
+  }
+  
+  insert(word) {
+    // Write your solution here
+  }
+  
+  search(word) {
+    // Write your solution here
+    
+  }
+  
+  startsWith(prefix) {
+    // Write your solution here
+    
+  }
+}
+
+// Test cases
+const trie = new Trie();
+trie.insert("apple");
+console.log(trie.search("apple")); // Expected: true
+console.log(trie.search("app")); // Expected: false
+console.log(trie.startsWith("app")); // Expected: true
+trie.insert("app");
+console.log(trie.search("app")); // Expected: true`,
+      python: `class Trie:
+    def __init__(self):
+        # Write your solution here
+        pass
+    
+    def insert(self, word):
+        # Write your solution here
+        pass
+    
+    def search(self, word):
+        # Write your solution here
+        pass
+    
+    def startsWith(self, prefix):
+        # Write your solution here
+        pass
+
+# Test cases
+trie = Trie()
+trie.insert("apple")
+print(trie.search("apple"))  # Expected: True
+print(trie.search("app"))  # Expected: False
+print(trie.startsWith("app"))  # Expected: True
+trie.insert("app")
+print(trie.search("app"))  # Expected: True`,
+      java: `class Trie {
+    // Write your solution here
+    
+    public Trie() {
+        
+    }
+    
+    public void insert(String word) {
+        
+    }
+    
+    public boolean search(String word) {
+        return false;
+    }
+    
+    public boolean startsWith(String prefix) {
+        return false;
+    }
+    
+    public static void main(String[] args) {
+        Trie trie = new Trie();
+        trie.insert("apple");
+        System.out.println(trie.search("apple")); // Expected: true
+        System.out.println(trie.search("app")); // Expected: false
+        System.out.println(trie.startsWith("app")); // Expected: true
+        trie.insert("app");
+        System.out.println(trie.search("app")); // Expected: true
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "true\nfalse\ntrue\ntrue",
+      python: "True\nFalse\nTrue\nTrue",
+      java: "true\nfalse\ntrue\ntrue",
+    },
+  },
+  
 };
 
 export const LANGUAGE_CONFIG = {
