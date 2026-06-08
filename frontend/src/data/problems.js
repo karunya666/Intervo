@@ -3206,6 +3206,7 @@ print(trie.search("app"))  # Expected: True`,
       java: "true\nfalse\ntrue\ntrue",
     },
   },
+  
 };
 
 export const LANGUAGE_CONFIG = {
