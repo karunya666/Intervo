@@ -3206,7 +3206,323 @@ print(trie.search("app"))  # Expected: True`,
       java: "true\nfalse\ntrue\ntrue",
     },
   },
+  "house-robber": {
+    id: "house-robber",
+    title: "House Robber",
+    difficulty: "Medium",
+    category: "Dynamic Programming",
+    description: {
+      text: "You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. The only constraint stopping you from robbing each of them is that adjacent houses have security systems connected and it will automatically contact the police if two adjacent houses were broken into on the same night. Given an integer array nums representing the amount of money of each house, return the maximum amount of money you can rob tonight without alerting the police.",
+      notes: [],
+    },
+    examples: [
+      {
+        input: "nums = [1,2,3,1]",
+        output: "4",
+        explanation: "Rob house 1 (money = 1) and then rob house 3 (money = 3). Total amount = 1 + 3 = 4.",
+      },
+      {
+        input: "nums = [2,7,9,3,1]",
+        output: "12",
+        explanation: "Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1). Total amount = 2 + 9 + 1 = 12.",
+      },
+    ],
+    constraints: ["1 ≤ nums.length ≤ 100", "0 ≤ nums[i] ≤ 400"],
+    starterCode: {
+      javascript: `function rob(nums) {
+  // Write your solution here
   
+}
+
+// Test cases
+console.log(rob([1,2,3,1])); // Expected: 4
+console.log(rob([2,7,9,3,1])); // Expected: 12
+console.log(rob([2,1])); // Expected: 2`,
+      python: `def rob(nums):
+    # Write your solution here
+    pass
+
+# Test cases
+print(rob([1,2,3,1]))  # Expected: 4
+print(rob([2,7,9,3,1]))  # Expected: 12
+print(rob([2,1]))  # Expected: 2`,
+      java: `class Solution {
+    public static int rob(int[] nums) {
+        // Write your solution here
+        
+        return 0;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(rob(new int[]{1,2,3,1})); // Expected: 4
+        System.out.println(rob(new int[]{2,7,9,3,1})); // Expected: 12
+        System.out.println(rob(new int[]{2,1})); // Expected: 2
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "4\n12\n2",
+      python: "4\n12\n2",
+      java: "4\n12\n2",
+    },
+  },
+
+  "longest-common-subsequence": {
+    id: "longest-common-subsequence",
+    title: "Longest Common Subsequence",
+    difficulty: "Medium",
+    category: "String • Dynamic Programming",
+    description: {
+      text: "Given two strings text1 and text2, return the length of their longest common subsequence. If there is no common subsequence, return 0. A subsequence is a new string generated from the original string with some characters deleted (can be none) without changing the relative order of the remaining characters.",
+      notes: [],
+    },
+    examples: [
+      {
+        input: 'text1 = "abcde", text2 = "ace"',
+        output: "3",
+        explanation: 'The longest common subsequence is "ace" and its length is 3.',
+      },
+      {
+        input: 'text1 = "abc", text2 = "abc"',
+        output: "3",
+        explanation: 'The longest common subsequence is "abc" and its length is 3.',
+      },
+      {
+        input: 'text1 = "abc", text2 = "def"',
+        output: "0",
+        explanation: "There is no such common subsequence, so the result is 0.",
+      },
+    ],
+    constraints: ["1 ≤ text1.length, text2.length ≤ 1000", "text1 and text2 consist of only lowercase English letters"],
+    starterCode: {
+      javascript: `function longestCommonSubsequence(text1, text2) {
+  // Write your solution here
+  
+}
+
+// Test cases
+console.log(longestCommonSubsequence("abcde", "ace")); // Expected: 3
+console.log(longestCommonSubsequence("abc", "abc")); // Expected: 3
+console.log(longestCommonSubsequence("abc", "def")); // Expected: 0`,
+      python: `def longestCommonSubsequence(text1, text2):
+    # Write your solution here
+    pass
+
+# Test cases
+print(longestCommonSubsequence("abcde", "ace"))  # Expected: 3
+print(longestCommonSubsequence("abc", "abc"))  # Expected: 3
+print(longestCommonSubsequence("abc", "def"))  # Expected: 0`,
+      java: `class Solution {
+    public static int longestCommonSubsequence(String text1, String text2) {
+        // Write your solution here
+        
+        return 0;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(longestCommonSubsequence("abcde", "ace")); // Expected: 3
+        System.out.println(longestCommonSubsequence("abc", "abc")); // Expected: 3
+        System.out.println(longestCommonSubsequence("abc", "def")); // Expected: 0
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "3\n3\n0",
+      python: "3\n3\n0",
+      java: "3\n3\n0",
+    },
+  },
+
+  "pacific-atlantic-water-flow": {
+    id: "pacific-atlantic-water-flow",
+    title: "Pacific Atlantic Water Flow",
+    difficulty: "Medium",
+    category: "Graph • DFS • BFS • Matrix",
+    description: {
+      text: "There is an m x n rectangular island that borders both the Pacific Ocean and Atlantic Ocean. The Pacific Ocean touches the island's left and top edges, and the Atlantic Ocean touches the island's right and bottom edges. Water can only flow in four directions (up, down, left, right) from a cell to an adjacent one with height equal or less. Return a list of grid coordinates where water can flow to both the Pacific and Atlantic oceans.",
+      notes: [],
+    },
+    examples: [
+      {
+        input: "heights = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]",
+        output: "[[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]",
+      },
+      {
+        input: "heights = [[1]]",
+        output: "[[0,0]]",
+      },
+    ],
+    constraints: ["m == heights.length", "n == heights[r].length", "1 ≤ m, n ≤ 200", "0 ≤ heights[r][c] ≤ 10⁵"],
+    starterCode: {
+      javascript: `function pacificAtlantic(heights) {
+  // Write your solution here
+  
+}
+
+// Test cases
+console.log(JSON.stringify(pacificAtlantic([[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]))); // [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]
+console.log(JSON.stringify(pacificAtlantic([[1]]))); // [[0,0]]`,
+      python: `def pacificAtlantic(heights):
+    # Write your solution here
+    pass
+
+# Test cases
+print(pacificAtlantic([[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]))  # [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]
+print(pacificAtlantic([[1]]))  # [[0,0]]`,
+      java: `import java.util.*;
+
+class Solution {
+    public static List<List<Integer>> pacificAtlantic(int[][] heights) {
+        // Write your solution here
+        
+        return new ArrayList<>();
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(pacificAtlantic(new int[][]{{1,2,2,3,5},{3,2,3,4,4},{2,4,5,3,1},{6,7,1,4,5},{5,1,1,2,4}}));
+        // Expected: [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]
+        System.out.println(pacificAtlantic(new int[][]{{1}})); // Expected: [[0,0]]
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "[[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]\n[[0,0]]",
+      python: "[[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]]\n[[0, 0]]",
+      java: "[[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]]\n[[0, 0]]",
+    },
+  },
+
+  "longest-substring-without-repeating": {
+    id: "longest-substring-without-repeating",
+    title: "Longest Substring Without Repeating Characters",
+    difficulty: "Medium",
+    category: "String • Sliding Window • Hash Table",
+    description: {
+      text: "Given a string s, find the length of the longest substring without repeating characters.",
+      notes: [],
+    },
+    examples: [
+      {
+        input: 's = "abcabcbb"',
+        output: "3",
+        explanation: 'The answer is "abc", with the length of 3.',
+      },
+      {
+        input: 's = "bbbbb"',
+        output: "1",
+        explanation: 'The answer is "b", with the length of 1.',
+      },
+      {
+        input: 's = "pwwkew"',
+        output: "3",
+        explanation: 'The answer is "wke", with the length of 3.',
+      },
+    ],
+    constraints: ["0 ≤ s.length ≤ 5 * 10⁴", "s consists of English letters, digits, symbols and spaces"],
+    starterCode: {
+      javascript: `function lengthOfLongestSubstring(s) {
+  // Write your solution here
+  
+}
+
+// Test cases
+console.log(lengthOfLongestSubstring("abcabcbb")); // Expected: 3
+console.log(lengthOfLongestSubstring("bbbbb")); // Expected: 1
+console.log(lengthOfLongestSubstring("pwwkew")); // Expected: 3`,
+      python: `def lengthOfLongestSubstring(s):
+    # Write your solution here
+    pass
+
+# Test cases
+print(lengthOfLongestSubstring("abcabcbb"))  # Expected: 3
+print(lengthOfLongestSubstring("bbbbb"))  # Expected: 1
+print(lengthOfLongestSubstring("pwwkew"))  # Expected: 3`,
+      java: `class Solution {
+    public static int lengthOfLongestSubstring(String s) {
+        // Write your solution here
+        
+        return 0;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(lengthOfLongestSubstring("abcabcbb")); // Expected: 3
+        System.out.println(lengthOfLongestSubstring("bbbbb")); // Expected: 1
+        System.out.println(lengthOfLongestSubstring("pwwkew")); // Expected: 3
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "3\n1\n3",
+      python: "3\n1\n3",
+      java: "3\n1\n3",
+    },
+  },
+
+  "combination-sum": {
+    id: "combination-sum",
+    title: "Combination Sum",
+    difficulty: "Medium",
+    category: "Array • Backtracking",
+    description: {
+      text: "Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations of candidates where the chosen numbers sum to target. You may return the combinations in any order. The same number may be chosen from candidates an unlimited number of times.",
+      notes: ["Two combinations are unique if the frequency of at least one of the chosen numbers is different."],
+    },
+    examples: [
+      {
+        input: "candidates = [2,3,6,7], target = 7",
+        output: "[[2,2,3],[7]]",
+        explanation: "2 and 3 are candidates, and 2+2+3=7. 7 is a candidate, and 7=7. These are the only two combinations.",
+      },
+      {
+        input: "candidates = [2,3,5], target = 8",
+        output: "[[2,2,2,2],[2,3,3],[3,5]]",
+      },
+      {
+        input: "candidates = [2], target = 1",
+        output: "[]",
+      },
+    ],
+    constraints: ["1 ≤ candidates.length ≤ 30", "2 ≤ candidates[i] ≤ 40", "All elements of candidates are distinct", "1 ≤ target ≤ 40"],
+    starterCode: {
+      javascript: `function combinationSum(candidates, target) {
+  // Write your solution here
+  
+}
+
+// Test cases
+console.log(JSON.stringify(combinationSum([2,3,6,7], 7))); // Expected: [[2,2,3],[7]]
+console.log(JSON.stringify(combinationSum([2,3,5], 8))); // Expected: [[2,2,2,2],[2,3,3],[3,5]]
+console.log(JSON.stringify(combinationSum([2], 1))); // Expected: []`,
+      python: `def combinationSum(candidates, target):
+    # Write your solution here
+    pass
+
+# Test cases
+print(combinationSum([2,3,6,7], 7))  # Expected: [[2,2,3],[7]]
+print(combinationSum([2,3,5], 8))  # Expected: [[2,2,2,2],[2,3,3],[3,5]]
+print(combinationSum([2], 1))  # Expected: []`,
+      java: `import java.util.*;
+
+class Solution {
+    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+        // Write your solution here
+        
+        return new ArrayList<>();
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(combinationSum(new int[]{2,3,6,7}, 7)); // Expected: [[2,2,3],[7]]
+        System.out.println(combinationSum(new int[]{2,3,5}, 8)); // Expected: [[2,2,2,2],[2,3,3],[3,5]]
+        System.out.println(combinationSum(new int[]{2}, 1)); // Expected: []
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "[[2,2,3],[7]]\n[[2,2,2,2],[2,3,3],[3,5]]\n[]",
+      python: "[[2, 2, 3], [7]]\n[[2, 2, 2, 2], [2, 3, 3], [3, 5]]\n[]",
+      java: "[[2, 2, 3], [7]]\n[[2, 2, 2, 2], [2, 3, 3], [3, 5]]\n[]",
+    },
+  },
 };
 
 export const LANGUAGE_CONFIG = {
